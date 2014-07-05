@@ -1,0 +1,18 @@
+<?php
+$arr=['tanks'=>['Is-7','T-34-85','Tiger'],
+'aircraft'=>['I-153','P-51 Mustang','Fokker T.V'],
+'machinery'=>['vip'=>['Lamborghini Diablo','Mercedes-Benz','Porsche Cayenne'],
+             'premium'=>['Maserati Quattroporte','Maybach 62 Landaulet','Mercedes S 600 Pullman Guard'],
+             'standart'=>['Dodge Stratus ','Hyundai Sonata','Volkswagen Passat B6'],],
+'ships'=>['Frigata','Jacht,','Galion'],
+];
+
+function recursionMassiv($ar)
+{
+  foreach($ar as $key=>$el){
+    if(!is_array($el)){ echo"\t$key=$el\n"; } 
+    else {echo "$key=\n";recursionMassiv($el);};    
+  }
+}
+recursionMassiv($arr);
+?>
