@@ -8,11 +8,11 @@ $arr=['tanks'=>['Is-7','T-34-85','Tiger'],
                     'standart'=>['Dodge Stratus ','Hyundai Sonata','Volkswagen Passat B6'],],
       'ships'=>['Frigata','Jacht,','Galion'],
 ];
-function recursionMassiv($ar)
+function recursionMassiv($ar, $tabs='')
 {
   foreach($ar as $key=>$el){
     if(!is_array($el)){ echo"\t$key=$el\n"; } 
-    else {echo "$key=\n";recursionMassiv($el);};    
+    else {echo "$key=\n";recursionMassiv($el, $tabs . "\t");};    
   }
 }
 recursionMassiv($arr);
