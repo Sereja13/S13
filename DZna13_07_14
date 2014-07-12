@@ -1,0 +1,53 @@
+<?php
+class Element
+{
+    private $type;
+    public $attributes = array();
+    public $childrens = array();
+
+    public function __construct($type){
+        $this->type = $type;
+    }
+    public function printTabs(){
+        return $tabs."\t";
+    }
+    public function printElement($t, $tabs=''){
+        echo "$tabs<$this->type";
+        if(is_array($this->attributes) != 0){
+            foreach($this->attributes as $attr){
+                echo " $attr";
+            }
+        }
+        echo ">\n";
+        if(is_array($this->childrens)){
+            foreach($this->childrens as $chil){
+                $chil->printElement($chil, "$tabs\t");
+            }
+        }
+        echo "$tabs</$this->type>\n";
+
+    }
+    public function add_children(Element $e){
+        $this->childrens[] = $e;
+    }
+    public function add_attribute($AddAttr){
+        $this->attributes[] = $AddAttr;
+    }
+}
+$b = '';
+$html = new Element('html');
+$head = new Element('head');
+$body = new Element('body');
+$table = new Element('table');
+$tr = new Element('tr');
+$td = new Element('td');
+$td->add_attribute('align="right" valign="top"');
+$tr->add_children($td);
+$tr->add_children($td);
+$table->add_children($tr);
+$table->add_children($tr);
+$body->add_children($table);
+$html->add_children($head);
+$html->add_children($body);
+$html->printElement($html,$b);
+?>
